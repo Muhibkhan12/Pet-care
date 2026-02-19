@@ -71,4 +71,5 @@ Route::get('/deleteAppointment/{id}',[AppointmentController::class,'deleteStatus
 Route::get('vet-dashboard',[VetController::class,'showVet'])->name('show-veterian');
 Route::get('/vet-information',[VetController::class,'showVetInfoPage'])->name('vet-info-form');
 Route::post('/store-vet-info',[VetController::class,'storeVetdata'])->name('add-vet-data');
-Route::get('/vet-appoinment',[VetController::class,'showVetAppoinmetPage'])->name('show-vet-appointment');
+// Route::get('/vet-appoinment',[VetController::class,'showVetAppoinmetPage'])->name('show-vet-appointment');
+Route::get('/vet-appoinment',[VetController::class,'sendingAppointments'])->name('show-vet-appointment');

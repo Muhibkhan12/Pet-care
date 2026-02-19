@@ -31,7 +31,7 @@ class VetController extends Controller
     public function sendingAppointments(){
         $vet = Auth::user()->id;
         $appointments = Appointment::where('vet_id', $vet)->where('status', 'approved')->orderBy('appointment_date', 'asc')->orderBy('appointment_time', 'asc')->get();
-        return view('VetDashboard.appointment', compact('appointments'));
+        return view('VetDashboard.appoinment', compact('appointments'));
     }
     public function storeVetdata(Request $request){
         $validated = $request->validate([

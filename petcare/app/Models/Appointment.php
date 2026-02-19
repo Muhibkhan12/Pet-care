@@ -18,13 +18,13 @@ class Appointment extends Model
     ];
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function vet(){
         return $this->belongsTo(vet::class, 'vet_id');
     }
     public function pet(){
-        return $this->belongsTo(pet::class);
+        return $this->belongsTo(pet::class, 'pet_id');
     }
 
 }
