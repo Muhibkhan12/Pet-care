@@ -104,7 +104,7 @@
                                                 </div>
                                                 <div>
                                                     <p class="text-sm text-gray-500">Assigned Veterinarian</p>
-                                                    <p class="font-medium text-gray-900">{{$appointment->name}}</p>
+                                                    {{-- <p class="font-medium text-gray-900">{{$appointments->name}}</p> --}}
                                                 </div>
                                             </div>
                                             
