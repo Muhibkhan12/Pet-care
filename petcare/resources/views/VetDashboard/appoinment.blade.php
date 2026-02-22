@@ -104,7 +104,7 @@
                                                 </div>
                                                 <div>
                                                     <p class="text-sm text-gray-500">Assigned Veterinarian</p>
-                                                    {{-- <p class="font-medium text-gray-900">{{$appointments->name}}</p> --}}
+                                                    <p class="font-medium text-gray-900">{{$data->user->name}}</p>
                                                 </div>
                                             </div>
                                             
@@ -128,9 +128,9 @@
                                                 B
                                             </div>
                                             <div>
-                                                <p class="font-bold text-gray-900">Bailey</p>
+                                                <p class="font-bold text-gray-900">{{$data->pet->name}}</p>
                                                 <div class="flex items-center mt-1 space-x-4">
-                                                    <span class="text-sm text-gray-600">Golden Retriever • 4 years old</span>
+                                                    <span class="text-sm text-gray-600">{{$data->pet->breed}} *  {{$data->pet->age}} years old</span>
                                                 </div>
                                                 <div class="mt-2">
                                                     <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Microchipped</span>
@@ -152,7 +152,7 @@
                                                 </div>
                                                 <div>
                                                     <p class="text-sm text-gray-500">Client Name</p>
-                                                    <p class="font-medium text-gray-900">Michael Thompson</p>
+                                                    <p class="font-medium text-gray-900">{{$data->user->name}}</p>
                                                 </div>
                                             </div>
                                             
@@ -162,7 +162,7 @@
                                                 </div>
                                                 <div>
                                                     <p class="text-sm text-gray-500">Phone Number</p>
-                                                    <p class="font-medium text-gray-900">(555) 123-4567</p>
+                                                    <p class="font-medium text-gray-900">{{$data->user->phone}}</p>
                                                 </div>
                                             </div>
                                             
@@ -172,7 +172,7 @@
                                                 </div>
                                                 <div>
                                                     <p class="text-sm text-gray-500">Email Address</p>
-                                                    <p class="font-medium text-gray-900">michael.t@example.com</p>
+                                                    <p class="font-medium text-gray-900">{{$data->user->email}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -182,7 +182,7 @@
                                     <div>
                                         <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Notes & Instructions</h3>
                                         <div class="p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded-r-lg">
-                                            <p class="text-sm text-gray-800">Owner reports decreased appetite over the past week. Bailey has also been less active than usual. Please check for any dental issues or possible digestive problems.</p>
+                                            <p class="text-sm text-gray-800">{{$data->reason}}</p>
                                         </div>
                                     </div>
                                 </div>
