@@ -1,4 +1,5 @@
-    {{-- @dd($appointments) --}}
+
+
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -77,8 +78,15 @@
                         <div class="confirmation-card bg-white rounded-xl p-6">
                             <div class="flex items-center justify-between mb-6">
                                 <h2 class="text-xl font-bold text-gray-900">Appointment Details</h2>
-                                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">
-                                    <i class="fas fa-clock mr-1"></i> Upcoming
+                                @php
+                                    $isPast = \Carbon\Carbon::parse($data->appointment_date)->isPast();
+                                @endphp                      
+                                <span class="
+                                    text-sm font-semibold px-3 py-1 rounded-full
+                                    {{ $isPast ? 'bg-gray-100 text-gray-800' : 'bg-blue-100 text-blue-800' }}
+                                ">
+                                    <i class="fas {{ $isPast ? 'fa-check-circle' : 'fa-clock' }} mr-1"></i>
+                                    {{ $isPast ? 'Completed' : 'Upcoming' }}
                                 </span>
                             </div>
                             
@@ -213,51 +221,52 @@
                         <!-- Upcoming Appointments -->
                         <div class="confirmation-card bg-white rounded-xl p-6">
                             <h3 class="text-lg font-bold text-gray-900 mb-4">Today's Appointments</h3>
+                            @if($appointments->appointment_date > \Carbon\Carbon::today())
                             <div class="space-y-4">
-                                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
-                                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                                        <i class="fas fa-dog text-blue-600"></i>
+                                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-dog text-blue-600"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <p class="font-medium text-gray-900">9:00 AM</p>
+                                                <p class="text-sm text-gray-600">Rex - German Shepherd</p>
+                                            </div>
+                                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Checkup</span>
+                                        </div>
+
+                                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-cat text-blue-600"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <p class="font-medium text-gray-900">11:15 AM</p>
+                                                <p class="text-sm text-gray-600">Whiskers - Domestic Shorthair</p>
+                                            </div>
+                                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Vaccination</span>
+                                        </div>
+
+                                        <div class="flex items-center p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-dog text-blue-600"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <p class="font-medium text-gray-900">2:30 PM</p>
+                                                <p class="text-sm text-gray-600">Bailey - Golden Retriever</p>
+                                            </div>
+                                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Checkup</span>
+                                        </div>
+
+                                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-rabbit text-blue-600"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <p class="font-medium text-gray-900">4:00 PM</p>
+                                                <p class="text-sm text-gray-600">Cotton - Holland Lop</p>
+                                            </div>
+                                            <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">Dental</span>
+                                        </div>
                                     </div>
-                                    <div class="flex-1">
-                                        <p class="font-medium text-gray-900">9:00 AM</p>
-                                        <p class="text-sm text-gray-600">Rex - German Shepherd</p>
-                                    </div>
-                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Checkup</span>
-                                </div>
-                                
-                                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
-                                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                                        <i class="fas fa-cat text-blue-600"></i>
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="font-medium text-gray-900">11:15 AM</p>
-                                        <p class="text-sm text-gray-600">Whiskers - Domestic Shorthair</p>
-                                    </div>
-                                    <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Vaccination</span>
-                                </div>
-                                
-                                <div class="flex items-center p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
-                                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                                        <i class="fas fa-dog text-blue-600"></i>
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="font-medium text-gray-900">2:30 PM</p>
-                                        <p class="text-sm text-gray-600">Bailey - Golden Retriever</p>
-                                    </div>
-                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Checkup</span>
-                                </div>
-                                
-                                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
-                                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                                        <i class="fas fa-rabbit text-blue-600"></i>
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="font-medium text-gray-900">4:00 PM</p>
-                                        <p class="text-sm text-gray-600">Cotton - Holland Lop</p>
-                                    </div>
-                                    <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">Dental</span>
-                                </div>
-                            </div>
                         </div>
                         
                         <!-- Quick Actions -->
@@ -284,7 +293,6 @@
                         </div>
                     </div>
                     </div>
-                @endforeach
             </div>
         </main>
 
