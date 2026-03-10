@@ -66,4 +66,13 @@ class AppointmentController extends Controller
         Appointment::where('id', $id)->delete();
         return back()->with('success', 'Appointment has been rejected');
     }
+
+    public function updateAppointment($id){
+        $updateAppointment =  Appointment::findOrFail($id);
+        $updateAppointment->status = 'completed';
+        $updateAppointment->save();
+
+        return back()->with('success','Appointment Completed');
+
+    }   
 }

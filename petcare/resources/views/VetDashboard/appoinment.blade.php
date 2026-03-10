@@ -55,19 +55,7 @@
                             </button>
                         </div>
                     </div>
-                    
-                    <!-- Success Alert -->
-                    <div class="mt-6 bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
-                        <div class="flex">
-                            <div class="">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-green-800 font-medium">Appointment successfully created!</p>
-                                <p class="text-green-700 mt-1">Confirmation has been sent to the client via email and SMS.</p>
-                            </div>
-                        </div>
-                    </div>
+                
                 </div>
 
                 <!-- Appointment Details Card -->
@@ -86,7 +74,7 @@
                                     {{ $isPast ? 'bg-gray-100 text-gray-800' : 'bg-blue-100 text-blue-800' }}
                                 ">
                                     <i class="fas {{ $isPast ? 'fa-check-circle' : 'fa-clock' }} mr-1"></i>
-                                    {{ $isPast ? 'Completed' : 'Upcoming' }}
+                                    {{ $isPast ? 'Missed' : 'Upcoming' }}
                                 </span>
                             </div>
                             
@@ -207,9 +195,13 @@
                                         <button class="px-4 py-2 bg-white text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition font-medium">
                                             <i class="fas fa-edit mr-2"></i> Edit Details
                                         </button>
-                                        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
-                                            <i class="fas fa-check-circle mr-2"></i> Mark as Completed
-                                        </button>
+                                        <form method="POST" action="{{route('appointment-update',$data->id)}}">
+                                            @csrf
+                                            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
+                                                <i class="fas fa-check-circle mr-2"></i> Mark as Completed
+                                            </button>
+                                        </form>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -221,7 +213,7 @@
                         <!-- Upcoming Appointments -->
                         <div class="confirmation-card bg-white rounded-xl p-6">
                             <h3 class="text-lg font-bold text-gray-900 mb-4">Today's Appointments</h3>
-                            @if($appointments->appointment_date > \Carbon\Carbon::today())
+                            @if(\Carbon\Carbon::parse($data->appointment_date)->isFuture())
                             <div class="space-y-4">
                                         <div class="flex items-center p-3 bg-gray-50 rounded-lg">
                                             <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
@@ -267,6 +259,9 @@
                                             <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">Dental</span>
                                         </div>
                                     </div>
+    
+                                @endif
+                            </div>
                         </div>
                         
                         <!-- Quick Actions -->
@@ -293,6 +288,8 @@
                         </div>
                     </div>
                     </div>
+
+                @endforeach
             </div>
         </main>
 

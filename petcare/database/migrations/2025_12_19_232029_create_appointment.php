@@ -27,7 +27,7 @@ return new class extends Migration
           ->cascadeOnDelete();
 
     $table->dateTime('appointment_date');
-    $table->enum('status', ['pending','approved','rejected'])->default('pending');
+    $table->enum('status', ['pending','approved','rejected','completed'])->default('pending');
 
     $table->timestamps();
 });
